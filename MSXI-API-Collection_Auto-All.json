@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "73d2cd87-0639-4ceb-8c0c-2d5ae79a5a60",
+		"name": "MSXI-API-HTTPS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38686307"
+	},
+	"item": [
+	{
+			"name": "01.getMSXIKeyAPI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status 200\"] = responseCode.code === 200;\r",
+							"var accessToken = responseBody;\r",
+							"postman.setGlobalVariable(\"Token\",accessToken);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"userId\": \"Apiuser\",\r\n  \"password\" : \"Admin@1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcbccpa-uat.msxint.com/api/getMSXIKeyAPI?Apikey=aSNASDBNMASDNMA,SDXM zd,JMM,M,89300P3O22_JSDSADSD_12948I9134",
+					"protocol": "https",
+					"host": [
+						"fcbccpa-uat",
+						"msxint",
+						"com"
+					],
+					"path": [
+						"api",
+						"getMSXIKeyAPI"
+					],
+					"query": [
+						{
+							"key": "Apikey",
+							"value": "aSNASDBNMASDNMA,SDXM zd,JMM,M,89300P3O22_JSDSADSD_12948I9134"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02.getDataRangeAPI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcbccpa-uat.msxint.com/api/getDataRangeAPI?DailyFequency=1",
+					"protocol": "https",
+					"host": [
+						"fcbccpa-uat",
+						"msxint",
+						"com"
+					],
+					"path": [
+						"api",
+						"getDataRangeAPI"
+					],
+					"header": [
+						{
+							"key": "Authorization",
+							"value": "{{Token}}",
+							"type": "text"
+						}
+					],
+					"query": [
+						{
+							"key": "StartDate",
+							"value": "2021-09-01",
+							"disabled": true
+						},
+						{
+							"key": "EndDate",
+							"value": "2021-10-01",
+							"disabled": true
+						},
+						{
+							"key": "DailyFequency",
+							"value": "0"
+						}
+					]
+					
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03.sendResponseAPI",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcbccpa-uat.msxint.com/api/sendResponseAPI",
+					"protocol": "https",
+					"host": [
+						"fcbccpa-uat",
+						"msxint",
+						"com"
+					],
+					"path": [
+						"api",
+						"sendResponseAPI"
+					]
+			
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04.cleanupAPI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"collections\": [\"APP_ATTRIB_data\",\"TEST123\"],\r\n    \"adminSeeder\": \"N\",\r\n    \"userID\": \"TEST1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcbccpa-uat.msxint.com/api/cleanupAPI",
+					"protocol": "https",
+					"host": [
+						"fcbccpa-uat",
+						"msxint",
+						"com"
+					],
+					"path": [
+						"api",
+						"cleanupAPI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05.sendMailCCPA",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"to\": [\"skolhapure@msxi.com\" ],\r\n  \"subject\" : \"Test mail from nodejs\",\r\n  \"text\" : \"Mail from NODEJS using sendgrid\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fcbccpa-uat.msxint.com/api/sendMailCCPA",
+					"protocol": "https",
+					"host": [
+						"fcbccpa-uat",
+						"msxint",
+						"com"
+					],
+					"path": [
+						"api",
+						"sendMailCCPA"
+					],
+					"query": [
+						{
+							"key": "To",
+							"value": "skolhapure@msxi.com"
+						},
+						{
+							"key": "Subject",
+							"value": "\"Test from nodejs\""
+						},
+						{
+							"key": "Msgbody",
+							"value": "\"Hi this is test from bare API\""
+						}
+					]
+				}
+			},
+			"response": []
+		},{
+			"name": "99.FFCAPI",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n    \"requestId\":\"171635\",\r\n   \"batchId\":\"2100424102801\",\r\n   \"complianceProgram\":\"CPRA\",\r\n   \"requestType\":\"CABRTKD\",\r\n   \"requestCategory\":\"ACCESS\",\r\n   \"requestTimeStamp\":\"2024-10-28 15:03:57.420374\",\r\n   \"sentToAppsTimeStamp\":\"2024-10-28 15:30:40.261\",\r\n   \"firstName\":\"Matthew\",\r\n   \"lastName\":\"Harris\",\r\n   \"primaryEmail\":\"mjharris@URBANSCIENCE.com\",\r\n   \"primaryPhone\":\"5593002557\",\r\n   \"entityName\":\"Urban Science\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://uat-ffc.msxi.com/DELETIONAPI/V1/DELETIONDATAREQUEST?token=eVpSMTlCOW4wdDA1N3pFeA==",
+					"protocol": "https",
+					"host": [
+						"uat-ffc",
+						"msxi",
+						"com"
+					],
+					"path": [
+						"DELETIONAPI",
+						"V1",
+						"DELETIONDATAREQUEST"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eVpSMTlCOW4wdDA1N3pFeA=="
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
